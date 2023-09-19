@@ -1,10 +1,10 @@
 /* Styles for the login form */
-body {
+/* body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-}
+} */
 
 .jobRegister-container {
     width: 100%;
@@ -91,11 +91,11 @@ ul.note-list li {
     text-align: left;
 }
 
-.extralogo{
+/* .extralogo{
     position: relative;
-}
+} */
 
-img {
+/* img {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -105,4 +105,4 @@ img {
 .submit{
     margin: 25px;
     text-align: center;
-}
+} */
