@@ -113,6 +113,10 @@ def login():
 def studentDashboard():
     return render_template('studentDashboard.html')
 
+@app.route("/jobReg", methods=['GET'])
+def studentDashboard():
+    return render_template('jobReg.html')
+
 @app.route("/form", methods=['GET'])
 def form():
     return render_template('form.html')
