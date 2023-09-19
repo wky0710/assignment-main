@@ -163,6 +163,7 @@ def jobReg():
                 s3_location,
                 custombucket,
                 comp_image_file_name_in_s3)
+            return redirect(url_for('companyDashboard'))
         except Exception as e:
             return str(e)
         
