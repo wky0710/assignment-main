@@ -140,33 +140,32 @@ def jobReg():
 
         if companyImage.filename == "":
             return "Please select a file"
+    
+        cursor.execute(insert_sql, (comp_name, job_title, job_desc, job_req, sal_range, contact_person_name, contact_person_email, contact_number, comp_state))
+        db_conn.commit()
+        cursor.close()
+        # Uplaod image file in S3 #
+        comp_image_file_name_in_s3 = "company-" + str(comp_name) + "_image_file"
+        s3 = boto3.resource('s3')
 
         try:
-            cursor.execute(insert_sql, (comp_name, job_title, job_desc, job_req, sal_range, contact_person_name, contact_person_email, contact_number, comp_state))
-            db_conn.commit()
-            # Uplaod image file in S3 #
-            comp_image_file_name_in_s3 = "company-" + str(comp_name) + "_image_file"
-            s3 = boto3.resource('s3')
+            print("Data inserted in MySQL RDS... uploading image to S3...")
+            s3.Bucket(custombucket).put_object(Key=comp_image_file_name_in_s3, Body=companyImage)
+            bucket_location = boto3.client('s3').get_bucket_location(Bucket=custombucket)
+            s3_location = (bucket_location['LocationConstraint'])
 
-            try:
-                print("Data inserted in MySQL RDS... uploading image to S3...")
-                s3.Bucket(custombucket).put_object(Key=comp_image_file_name_in_s3, Body=companyImage)
-                bucket_location = boto3.client('s3').get_bucket_location(Bucket=custombucket)
-                s3_location = (bucket_location['LocationConstraint'])
+            if s3_location is None:
+                s3_location = ''
+            else:
+                s3_location = '-' + s3_location
 
-                if s3_location is None:
-                    s3_location = ''
-                else:
-                    s3_location = '-' + s3_location
-
-                object_url = "https://s3{0}.amazonaws.com/{1}/{2}".format(
-                    s3_location,
-                    custombucket,
-                    comp_image_file_name_in_s3)
-            except Exception as e:
-                return str(e)
-        finally:
-            cursor.close()
+            object_url = "https://s3{0}.amazonaws.com/{1}/{2}".format(
+                s3_location,
+                custombucket,
+                comp_image_file_name_in_s3)
+        except Exception as e:
+            return str(e)
+        
     return render_template('jobReg.html')
 
 @app.route("/companyDashboard", methods=['GET'])
