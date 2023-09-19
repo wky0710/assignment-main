@@ -21,7 +21,7 @@ db_conn = connections.Connection(
 
 )
 output = {}
-table = 'students'
+table = 'jobApply'
 
 @app.route("/", methods=['GET'], endpoint='index')
 def index():
