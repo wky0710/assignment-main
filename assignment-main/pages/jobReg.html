@@ -91,9 +91,8 @@
                         </ul>
                     </div>
                     <div class="form-container">
-                        <div class="side-by-side">
-                            <form action="/jobRegister" autocomplete="on" method = "POST" enctype="multipart/form-data">
-                            
+						<form action="/jobReg" autocomplete="on" method = "POST" enctype="multipart/form-data"></form>
+                        	<div class="side-by-side">
                                 <label for="comp_name">Company Name in FULL:</label>
                                 <textarea id="comp_name" name="comp_name" rows="2" cols="50" placeholder="Eg: Tunku Abdul Rahman University of Management and Technology" required></textarea>
                                 <br>
@@ -136,31 +135,31 @@
                                     <input type="radio" id="range7" name="sal_range" value="RM5000 and above">
                                     RM5000 and above
                                 </label>              
-                            </form>
-                        </div>
-                        <div class="side-by-side">
-                            <label for="contact_person_name">Contact Person Name  (For Job Application):</label>
-                            <input type="text" id="contact_person_name" name="contact_person_name" placeholder="Eg: Ali bin Abu" required>
-                            <br>
-                            <label for="contact_person_email">Contact Person Email Address (For Job Application):</label>
-                            <input type="text" id="contact_person_email" name="contact_person_email" placeholder="Eg: abc123@gmail.com" required>
-                            <br>
-                            <label for="contact_number">Phone Number for Job Enquiries if applicable  (For Job Application):</label>
-                            <input type="text" id="contact_number" name="contact_number" placeholder="Eg: 016-123 4567" required>
-                            <br>
-                            <label for="comp_state">Which state is your company in:</label>
-                            <input type="text" id="comp_state" name="comp_state" placeholder="Eg: Pahang" required>
-                            <br>
-                            <label for="companyImage">Upload Company Image:</label>
-                            <input type="file" id="companyImage" name="companyImage" accept="image/*"> 
-                        </div>
-                        <div class="extralogo">
-                            <img src="../static/img/logo/logo.png" alt="">
-                        </div> 
-                    </div>                      
-                    <div class="submit">
-                        <button type="submit">Submit</button>
-                    </div>
+                            </div>
+							<div class="side-by-side">
+								<label for="contact_person_name">Contact Person Name  (For Job Application):</label>
+								<input type="text" id="contact_person_name" name="contact_person_name" placeholder="Eg: Ali bin Abu" required>
+								<br>
+								<label for="contact_person_email">Contact Person Email Address (For Job Application):</label>
+								<input type="text" id="contact_person_email" name="contact_person_email" placeholder="Eg: abc123@gmail.com" required>
+								<br>
+								<label for="contact_number">Phone Number for Job Enquiries if applicable  (For Job Application):</label>
+								<input type="text" id="contact_number" name="contact_number" placeholder="Eg: 016-123 4567" required>
+								<br>
+								<label for="comp_state">Which state is your company in:</label>
+								<input type="text" id="comp_state" name="comp_state" placeholder="Eg: Pahang" required>
+								<br>
+								<label for="companyImage">Upload Company Image:</label>
+								<input type="file" id="companyImage" name="companyImage" accept="image/*"> 
+							</div>
+							<div class="extralogo">
+								<img src="../static/img/logo/logo.png" alt="">
+							</div> 
+							<div class="submit">
+								<button type="submit">Submit</button>
+							</div>
+						</form>
+                    </div>      
 				</div>
 			</div>
 		</div> 
