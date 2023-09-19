@@ -121,9 +121,13 @@ def form():
 def report():
     return render_template('report.html')
 
-@app.route("/jobReg", methods=['GET'])
+@app.route("/jobReg", methods=['GET', 'POST'])
 def jobReg():
     return render_template('jobReg.html')
+
+@app.route("/companyDashboard", methods=['GET'])
+def companyDashboard():
+    return render_template('companyDashboard.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
