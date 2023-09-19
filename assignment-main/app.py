@@ -114,7 +114,7 @@ def studentDashboard():
     return render_template('studentDashboard.html')
 
 @app.route("/jobReg", methods=['GET'])
-def studentDashboard():
+def jobReg():
     return render_template('jobReg.html')
 
 @app.route("/form", methods=['GET'])
