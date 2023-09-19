@@ -103,7 +103,7 @@ def login():
     
     # Fetch data from the database here
     cursor = db_conn.cursor()
-    select_sql = "SELECT stud_email, password FROM students"
+    select_sql = "SELECT email, password FROM students"
     cursor.execute(select_sql)
     data = cursor.fetchall()
     cursor.close()
