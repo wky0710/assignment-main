@@ -70,7 +70,7 @@ def register():
         cgpa = request.form['cgpa']
         ucSupervisor = request.form['ucSupervisor']
         ucSupervisorEmail = request.form['ucSupervisorEmail']
-        print("test1")
+        
         insert_sql = "INSERT INTO students VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
         cursor = db_conn.cursor()
         
@@ -134,13 +134,13 @@ def jobReg():
         contact_number = request.form['contact_number']
         comp_state = request.form['comp_state']
         companyImage = request.files['companyImage']
-        
+        print("test1")
         insert_sql = "INSERT INTO jobApply VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"    
         cursor = db_conn.cursor()
-        
+        print("test2")
         if companyImage.filename == "":
             return "Please select a file"
-    
+        print("test3")
         cursor.execute(insert_sql, (comp_name, job_title, job_desc, job_req, sal_range, contact_person_name, contact_person_email, contact_number, comp_state))
         db_conn.commit()
         cursor.close()
@@ -165,7 +165,9 @@ def jobReg():
                 comp_image_file_name_in_s3)
             return redirect(url_for('companyDashboard'))
         except Exception as e:
-            return str(e)
+            cursor.close()
+            print(f"Error during database insertion: {e}")
+            return str(e)  # Handle any database errors here
         
     return render_template('jobReg.html')
 
