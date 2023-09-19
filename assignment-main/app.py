@@ -123,52 +123,53 @@ def report():
 
 @app.route("/jobReg", methods=['GET', 'POST'])
 def jobReg():
-    comp_name = request.form['comp_name']
-    job_title = request.form['job_title']
-    job_desc = request.form['job_desc']
-    job_req = request.form['job_req']
-    sal_range = request.form['sal_range']
-    contact_person_name = request.form['contact_person_name']
-    contact_person_email = request.form['contact_person_email']
-    contact_number = request.form['contact_number']
-    comp_state = request.form['comp_state']
-    companyImage = request.files['companyImage']
+    if request.method == 'POST':
+        comp_name = request.form['comp_name']
+        job_title = request.form['job_title']
+        job_desc = request.form['job_desc']
+        job_req = request.form['job_req']
+        sal_range = request.form['sal_range']
+        contact_person_name = request.form['contact_person_name']
+        contact_person_email = request.form['contact_person_email']
+        contact_number = request.form['contact_number']
+        comp_state = request.form['comp_state']
+        companyImage = request.files['companyImage']
 
-    insert_sql = "INSERT INTO jobApply VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
-    cursor = db_conn.cursor()
+        insert_sql = "INSERT INTO jobApply VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+        cursor = db_conn.cursor()
 
-    if companyImage.filename == "":
-        return "Please select a file"
-
-    try:
-
-        cursor.execute(insert_sql, (comp_name, job_title, job_desc, job_req, sal_range, contact_person_name, contact_person_email, contact_number, comp_state))
-        db_conn.commit()
-        # Uplaod image file in S3 #
-        comp_image_file_name_in_s3 = "company-" + str(comp_name) + "_image_file"
-        s3 = boto3.resource('s3')
+        if companyImage.filename == "":
+            return "Please select a file"
 
         try:
-            print("Data inserted in MySQL RDS... uploading image to S3...")
-            s3.Bucket(custombucket).put_object(Key=comp_image_file_name_in_s3, Body=companyImage)
-            bucket_location = boto3.client('s3').get_bucket_location(Bucket=custombucket)
-            s3_location = (bucket_location['LocationConstraint'])
 
-            if s3_location is None:
-                s3_location = ''
-            else:
-                s3_location = '-' + s3_location
+            cursor.execute(insert_sql, (comp_name, job_title, job_desc, job_req, sal_range, contact_person_name, contact_person_email, contact_number, comp_state))
+            db_conn.commit()
+            # Uplaod image file in S3 #
+            comp_image_file_name_in_s3 = "company-" + str(comp_name) + "_image_file"
+            s3 = boto3.resource('s3')
 
-            object_url = "https://s3{0}.amazonaws.com/{1}/{2}".format(
-                s3_location,
-                custombucket,
-                comp_image_file_name_in_s3)
+            try:
+                print("Data inserted in MySQL RDS... uploading image to S3...")
+                s3.Bucket(custombucket).put_object(Key=comp_image_file_name_in_s3, Body=companyImage)
+                bucket_location = boto3.client('s3').get_bucket_location(Bucket=custombucket)
+                s3_location = (bucket_location['LocationConstraint'])
 
-        except Exception as e:
-            return str(e)
+                if s3_location is None:
+                    s3_location = ''
+                else:
+                    s3_location = '-' + s3_location
 
-    finally:
-        cursor.close()
+                object_url = "https://s3{0}.amazonaws.com/{1}/{2}".format(
+                    s3_location,
+                    custombucket,
+                    comp_image_file_name_in_s3)
+
+            except Exception as e:
+                return str(e)
+
+        finally:
+            cursor.close()
     return render_template('jobReg.html')
 
 @app.route("/companyDashboard", methods=['GET'])
