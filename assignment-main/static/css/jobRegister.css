@@ -17,10 +17,10 @@ body {
     
 }
 
-h2 {
+/* h2 {
     text-align: center;
     margin-bottom: 20px;
-}
+} */
 
 label,
 input,
@@ -29,6 +29,7 @@ textarea {
     margin: 10px 0;
     border-radius: 5px;
     align-items:center;
+    color:#112430
 }
 
 button {
