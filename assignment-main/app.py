@@ -142,7 +142,6 @@ def jobReg():
             return "Please select a file"
 
         try:
-
             cursor.execute(insert_sql, (comp_name, job_title, job_desc, job_req, sal_range, contact_person_name, contact_person_email, contact_number, comp_state))
             db_conn.commit()
             # Uplaod image file in S3 #
@@ -164,10 +163,8 @@ def jobReg():
                     s3_location,
                     custombucket,
                     comp_image_file_name_in_s3)
-
             except Exception as e:
                 return str(e)
-
         finally:
             cursor.close()
     return render_template('jobReg.html')
