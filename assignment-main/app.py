@@ -70,7 +70,7 @@ def register():
         cgpa = request.form['cgpa']
         ucSupervisor = request.form['ucSupervisor']
         ucSupervisorEmail = request.form['ucSupervisorEmail']
-
+        print("test1")
         insert_sql = "INSERT INTO students VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
         cursor = db_conn.cursor()
         
@@ -134,11 +134,10 @@ def jobReg():
         contact_number = request.form['contact_number']
         comp_state = request.form['comp_state']
         companyImage = request.files['companyImage']
-        print("test1")
-        insert_sql = "INSERT INTO jobApply VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
-        print("test2")
+        
+        insert_sql = "INSERT INTO jobApply VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"    
         cursor = db_conn.cursor()
-        print("test3")
+        
         if companyImage.filename == "":
             return "Please select a file"
     
