@@ -134,7 +134,7 @@ def jobReg():
     comp_state = request.form['comp_state']
     companyImage = request.files['companyImage']
 
-    insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    insert_sql = "INSERT INTO jobApply VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
 
     if companyImage.filename == "":
