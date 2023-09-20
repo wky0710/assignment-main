@@ -17,11 +17,6 @@
     
 }
 
-/* h2 {
-    text-align: center;
-    margin-bottom: 20px;
-} */
-
 label,
 input,
 textarea {
@@ -83,13 +78,17 @@ ul.note-list li {
 }
 
 .side-by-side {
-    flex: 1; /* Grow and shrink equally to fill the container */
-    background-color: #dadad2;
-    float: left;
     width: 50%; /* Adjust the width as needed */
     box-sizing: border-box; /* Include padding and border in the width */
-    padding: 50px;
     text-align: left;
+    flex: 1; /* Grow to fill available space */
+    border: 1px solid #ccc; /* Optional: Add borders for visual separation */
+    padding: 50px; /* Add padding for spacing between divs */
+    height: 100%; /* Set a fixed height to make them equal */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Stretch vertically */
+    background-color: #dadad2;
 }
 
 /* .extralogo{
