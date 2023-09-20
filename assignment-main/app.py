@@ -121,6 +121,46 @@ def form():
 def report():
     return render_template('report.html')
 
+@app.route("/compRegister", methods=['GET', 'POST'])
+def compRegister():
+    if request.method == 'POST':
+        compName = request.form['compName']
+        compEmail = request.form['compEmail']
+        comPassword = request.form['comPassword']
+
+        insert_sql = "INSERT INTO company VALUES (%s, %s, %s)"
+        cursor = db_conn.cursor()
+        
+        try:
+            cursor.execute(insert_sql, (compName, 
+                                        compEmail,
+                                        comPassword
+                                        ))
+            db_conn.commit()
+            cursor.close()
+            return redirect(url_for('login'))  # Go to the dashboard after successful registration
+        except Exception as e:
+            cursor.close()
+            return str(e)  # Handle any database errors here
+    return render_template('companyRegister.html')
+    
+@app.route("/lectLogin", methods=['GET', 'POST'])
+def lectLogin():
+    if request.method == 'POST':
+        return render_template('index.html', user_authenticated=True)
+    
+    # Fetch data from the database here
+    cursor = db_conn.cursor()
+    select_sql = "SELECT lectEmail, password FROM lecturer"
+    cursor.execute(select_sql)
+    data = cursor.fetchall()
+    cursor.close()
+    return render_template('lectLogin.html', lecturer=data)
+    
+@app.route("/lectDashboard", methods=['GET'])
+def lectDashboard():
+    return render_template('lectDashboard.html')
+
 @app.route("/jobReg", methods=['GET', 'POST'])
 def jobReg():
     if request.method == 'POST':

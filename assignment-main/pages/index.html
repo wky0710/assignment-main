@@ -25,6 +25,24 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
+    <style>
+        /* Style for the user icon */
+        .user-icon {
+            color: black;
+        }
+
+        /* Style for the user name */
+        .user-name {
+            color: black;
+            /* You can also adjust other styles like font-size, font-weight, etc. here */
+        }
+
+        /* Optional: Style for the user link (if needed) */
+        .user-link {
+            text-decoration: none;
+            /* Remove underline from the link */
+        }
+    </style>
 </head>
 
 <body>
@@ -79,13 +97,49 @@
                                 <div class="header-btn d-none f-right d-lg-block">
                                     {% if user_authenticated %}
                                     <!-- User is authenticated, show User Profile button -->
-                                    <a href="{{ url_for('jobReg') }}" class="btn head-btn1">User Profile</a>
+                                    <div class="user-profile">
+                                        <a href="javascript:void(0);" class="user-link"
+                                            onclick="submitStudentID('{{ studentID }}')">
+                                            <span class="user-name">Welcome, {{ user_login_name }}</span>
+                                            <i class="fas fa-user fa-2x user-icon"></i>
+                                        </a>
+                                    </div>
+
+                                    <!-- <input type="hidden" name="studentID" value="{{ studentID }}"> -->
+
                                     {% else %}
                                     <!-- User is not authenticated, show Register and Login buttons -->
-                                    <a href="{{ url_for('register') }}" class="btn head-btn1">Register</a>
-                                    <a href="{{ url_for('login') }}" class="btn head-btn2">Login</a>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default dropdown-toggle"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Register <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="{{ url_for('register') }}">Student</a>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider" />
+                                            </li>
+                                            <li><a class="dropdown-item"
+                                                    href="{{ url_for('lectRegister') }}">Lecturer</a></li>
+                                            <li>
+                                                <hr class="dropdown-divider" />
+                                            </li>
+                                            <li><a class="dropdown-item" href="#">Admin</a></li>
+                                            <li>
+                                                <hr class="dropdown-divider" />
+                                            </li>
+                                            <li><a class="dropdown-item" href="{{ url_for('compRegister') }}">Company</a></li>
+                                        </ul>
+                                    </div>
+                                    <a href="{{ url_for('login') }}" class="btn head-btn1">Login</a>
                                     {% endif %}
                                 </div>
+
+                                <!-- Add a hidden form for submitting studentID -->
+                                <form id="studentIDForm" method="GET" action="{{ url_for('studentDashboard') }}">
+                                    <input type="hidden" name="studentID" id="studentIDField" value="">
+                                </form>
                             </div>
                         </div>
                         <!-- Mobile Menu -->
@@ -787,6 +841,16 @@
     <!-- Jquery Plugins, main Jquery -->
     <script src="{{ url_for('static', filename='js/plugins.js') }}"></script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <!-- JavaScript function to submit studentID -->
+    <script>
+        function submitStudentID(studentID) {
+            // Set the value of the hidden input field
+            document.getElementById('studentIDField').value = studentID;
+            // Submit the form
+            document.getElementById('studentIDForm').submit();
+        }
+    </script>
 
 </body>
 
