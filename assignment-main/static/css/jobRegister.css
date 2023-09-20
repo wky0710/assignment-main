@@ -88,19 +88,15 @@ ul.note-list li {
     height: 100%;
 }
 
-.extralogo{
-    position: relative;
-} 
-
-img {
+.extralogo {
     position: absolute;
-    top: 50;
-    align-items: end;
-    margin: 50px;
-} 
+    bottom: 0; /* Align to the bottom */
+    left: 50px; /* Adjust horizontal position as needed */
+}
 
-.submit{
-    margin: 25px;
+.submit {
+    position: absolute;
+    bottom: 0; /* Align to the bottom */
+    right: 50px; /* Adjust horizontal position as needed */
     text-align: center;
-    top: 250;
-} 
+}
