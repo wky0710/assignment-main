@@ -25,7 +25,7 @@ output = {}
 table = 'students'
 
 
-@app.route("/", methods=['GET'])
+@app.route("/", methods=['GET'], endpoint='index')
 def index():
     return render_template('index.html')
 
@@ -164,7 +164,7 @@ def login():
 
                 if password == stored_password:
                     # Passwords match, user is authenticated
-                    return redirect(url_for('companyDashboard'))
+                    return render_template('index.html', user_login_name=name, studentID=studID, user_authenticated=True)
                 else:
                     return render_template('login.html', pwd_error="Incorrect password. Please try again.")
             else:
