@@ -85,21 +85,21 @@ ul.note-list li {
     box-sizing: border-box; /* Include padding and border in the width */
     padding: 50px;
     text-align: left;
-    height: 90%;
+    height: 100%;
 }
 
-/* .extralogo{
+.extralogo{
     position: relative;
-} */
+} 
 
-/* img {
+img {
     position: absolute;
     bottom: 0;
     right: 0;
     margin: 25px;
-}
+} 
 
 .submit{
     margin: 25px;
     text-align: center;
-} */
+} 
