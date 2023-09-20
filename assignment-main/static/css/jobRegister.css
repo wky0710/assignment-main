@@ -93,5 +93,5 @@ ul.note-list li {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin-top: auto; /* Pushes elements to the bottom */
+    margin-top: 500px; /* Pushes elements to the bottom */
 }
