@@ -183,7 +183,7 @@ def login():
                 name = data[2]
 
                 # Fetch job data from the database (assuming you have a SQL query for this)
-                select_sql = "SELECT * FROM jobApply WHERE compName = %s"
+                select_sql = "SELECT * FROM jobApply WHERE comp_name = %s"
                 cursor = db_conn.cursor()
                 cursor.execute(select_sql, (name,))
                 job_data = cursor.fetchall()
