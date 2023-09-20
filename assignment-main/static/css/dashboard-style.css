@@ -170,6 +170,12 @@ flex-wrap: wrap;
 gap: 50px;
 margin-bottom: 50px;
 }
+
+.hero__caption{
+    text-size-adjust:50px;
+    color: #ededed;
+}
+
 .nav {
 min-height: 91vh;
 background-color: var(--background-color2);
