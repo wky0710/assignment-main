@@ -96,11 +96,11 @@ img {
     position: absolute;
     top: 50;
     align-items: end;
-    margin: 10px;
+    margin: 50px;
 } 
 
 .submit{
     margin: 25px;
     text-align: center;
-    top: 50;
+    top: 250;
 } 
