@@ -101,18 +101,16 @@
 
 				<div class="report-body">
 					<div class="report-topic-heading">
-						<h3 class="t-op">Article</h3>
-						<h3 class="t-op">Views</h3>
-						<h3 class="t-op">Comments</h3>
+						<h3 class="t-op">Job Title</h3>
 						<h3 class="t-op">Status</h3>
 					</div>
 
 					<div class="items">
 						<ol>
 							{% for job in job_data %}
-								<li>
-									<strong>Job Title:</strong> {{ job[1] }}
-									<strong>Status:</strong> {{ job[9] }}<br>
+								<li style="font-size: x-large;">
+									<strong>{{ job[1] }}</strong> 
+									<strong> {{ job[9] }}</strong><br>
 								</li>
 							{% endfor %}
 						</ol>
