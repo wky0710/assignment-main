@@ -85,7 +85,7 @@ ul.note-list li {
     box-sizing: border-box; /* Include padding and border in the width */
     padding: 50px;
     text-align: left;
-    height: max-content;
+    height: 100%;
 }
 
 /* .extralogo{
