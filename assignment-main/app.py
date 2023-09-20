@@ -6,6 +6,7 @@ from config import *
 import hashlib
 
 app = Flask(__name__)
+
 # Configure the 'templates' folder for HTML templates.
 app.template_folder = 'pages'
 app.static_folder = 'static'
@@ -180,14 +181,19 @@ def login():
                 # Data is found in the database
                 stored_password = data[1]
                 name = data[2]
-                session['user_login_name'] = name
 
+                # Fetch job data from the database (assuming you have a SQL query for this)
+                select_sql = "SELECT * FROM jobApply WHERE compName = %s"
+                cursor = db_conn.cursor()
+                cursor.execute(select_sql, (name,))
+                job_data = cursor.fetchall()
+                cursor.close()
                 # You should hash the provided password and compare it to the stored hashed password
                 hashed_password = hashlib.sha256(password.encode()).hexdigest()
 
                 if password == stored_password:
                     # Passwords match, user is authenticated
-                    return render_template('companyDashboard.html', user_login_name=name)
+                    return render_template('companyDashboard.html', user_login_name=name, job_data=job_data)
                 else:
                     return render_template('login.html', pwd_error="Incorrect password. Please try again.")
             else:
@@ -482,16 +488,7 @@ def jobReg():
 
 @app.route("/companyDashboard", methods=['GET'])
 def companyDashboard():
-    user_login_name = session.get('user_login_name')
-
-    # Fetch job data from the database (assuming you have a SQL query for this)
-    select_sql = "SELECT * FROM jobApply WHERE compName = %s"
-    cursor = db_conn.cursor()
-    cursor.execute(select_sql, ( user_login_name,))
-    job_data = cursor.fetchall()
-    cursor.close()
-    
-    return render_template('companyDashboard.html', job_data=job_data)
+    return render_template('companyDashboard.html')
 
 # ------------------------------------------------------------------- Company END -------------------------------------------------------------------#
 
