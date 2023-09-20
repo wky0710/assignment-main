@@ -95,11 +95,11 @@ ul.note-list li {
 img {
     position: absolute;
     bottom: 0; /* Align to the bottom */
-    left: 50px; /* Adjust horizontal position as needed */
+    top: 100;
+    left: 10px; /* Adjust horizontal position as needed */
 } 
 
 .submit{
     bottom: 0; /* Align to the bottom */
-    right: 50px; /* Adjust horizontal position as needed */
     text-align: center;
 } 
