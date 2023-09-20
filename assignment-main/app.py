@@ -439,14 +439,15 @@ def jobReg():
         contact_number = request.form['contact_number']
         comp_state = request.form['comp_state']
         companyImage = request.files['companyImage']
+        status = "pending"
 
-        insert_sql = "INSERT INTO jobApply VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+        insert_sql = "INSERT INTO jobApply VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
         cursor = db_conn.cursor()
 
         if companyImage.filename == "":
             return "Please select a file"
  
-        cursor.execute(insert_sql, (comp_name, job_title, job_desc, job_req, sal_range, contact_person_name, contact_person_email, contact_number, comp_state))
+        cursor.execute(insert_sql, (comp_name, job_title, job_desc, job_req, sal_range, contact_person_name, contact_person_email, contact_number, comp_state,  status))
         db_conn.commit()
         cursor.close()
 
