@@ -197,7 +197,7 @@ def compLogin():
     
     # Fetch data from the database here
     cursor = db_conn.cursor()
-    select_sql = "SELECT compEmail, password FROM company"
+    select_sql = "SELECT compEmail, comPassword FROM company"
     cursor.execute(select_sql)
     data = cursor.fetchall()
     cursor.close()
