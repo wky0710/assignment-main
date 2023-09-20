@@ -109,11 +109,13 @@
 
 					<div class="items">
 						<ol>
-							{% for index, job in enumerate(job_data) %}
+							{% set counter = 1 %}
+							{% for job in job_data %}
 								<li>
-									<strong>{{ index + 1 }}. Job Title:</strong> {{ job[1] }}<br>
+									<strong>{{ counter }}. Job Title:</strong> {{ job[1] }}<br>
 									<strong>Status:</strong> {{ job[9] }}<br>
 								</li>
+								{% set counter = counter + 1 %}
 							{% endfor %}
 						</ol>
 
