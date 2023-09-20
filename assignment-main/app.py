@@ -164,7 +164,7 @@ def login():
 
                 if password == stored_password:
                     # Passwords match, user is authenticated
-                    return render_template('index.html', user_login_name=name, studentID=studID, user_authenticated=True)
+                    return redirect(url_for('companyDashboard'))
                 else:
                     return render_template('login.html', pwd_error="Incorrect password. Please try again.")
             else:
