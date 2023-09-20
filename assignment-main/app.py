@@ -144,6 +144,35 @@ def compRegister():
             return str(e)  # Handle any database errors here
     return render_template('companyRegister.html')
     
+@app.route("/lectRegister", methods=['GET', 'POST'])
+def lectRegister():
+    if request.method == 'POST':
+        lectName = request.form['lectName']
+        lectID = request.form['lectID']
+        lectEmail = request.form['lectEmail']
+        gender = request.form['gender']
+        password = request.form['password']
+
+        insert_sql = "INSERT INTO lecturer VALUES (%s, %s, %s, %s, %s)"
+        cursor = db_conn.cursor()
+        
+        try:
+            cursor.execute(insert_sql, (lectName, 
+                                        lectID, 
+                                        lectEmail, 
+                                        gender, 
+                                        gender,
+                                        password
+
+                                        ))
+            db_conn.commit()
+            cursor.close()
+            return redirect(url_for('login'))  # Go to the dashboard after successful registration
+        except Exception as e:
+            cursor.close()
+            return str(e)  # Handle any database errors here
+    return render_template('lectRegister.html')
+    
 @app.route("/lectLogin", methods=['GET', 'POST'])
 def lectLogin():
     if request.method == 'POST':
