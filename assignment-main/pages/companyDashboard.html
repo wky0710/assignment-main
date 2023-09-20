@@ -107,11 +107,13 @@
 
 					<div class="items">
 						<ol>
+							{% set counter = 1 %}
 							{% for job in job_data %}
 								<li class="items">
-									<strong>{{ job[1] }}</strong> 
+									<strong>{{ counter }}. {{ job[1] }}</strong> 
 									<strong> {{ job[9] }}</strong><br>
 								</li>
+								{% set counter = counter + 1 %}
 							{% endfor %}
 						</ol>
 
