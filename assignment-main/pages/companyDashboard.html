@@ -88,14 +88,14 @@
 
 			<div class="box-container">
 				<div class="hero__caption">
-					<span class="user-name" style="color: white; font-size: 50px;"><b>Welcome,  {{ user_login_name }}</b></span>
+					<span class="user-name" style="color: rgb(21, 14, 45); font-size: 50px;"><b>Welcome,  {{ user_login_name }}</b></span>
 				</div>
 				
 			</div>
 
 			<div class="report-container">
 				<div class="report-header">
-					<h1 class="recent-Articles">Recent Articles</h1>
+					<h1 class="recent-Articles">Job Posted</h1>
 					<button class="view">View All</button>
 				</div>
 
@@ -108,68 +108,14 @@
 					</div>
 
 					<div class="items">
-						<div class="item1">
-							<h3 class="t-op-nextlvl">Article 73</h3>
-							<h3 class="t-op-nextlvl">2.9k</h3>
-							<h3 class="t-op-nextlvl">210</h3>
-							<h3 class="t-op-nextlvl label-tag">Published</h3>
-						</div>
-
-						<div class="item1">
-							<h3 class="t-op-nextlvl">Article 72</h3>
-							<h3 class="t-op-nextlvl">1.5k</h3>
-							<h3 class="t-op-nextlvl">360</h3>
-							<h3 class="t-op-nextlvl label-tag">Published</h3>
-						</div>
-
-						<div class="item1">
-							<h3 class="t-op-nextlvl">Article 71</h3>
-							<h3 class="t-op-nextlvl">1.1k</h3>
-							<h3 class="t-op-nextlvl">150</h3>
-							<h3 class="t-op-nextlvl label-tag">Published</h3>
-						</div>
-
-						<div class="item1">
-							<h3 class="t-op-nextlvl">Article 70</h3>
-							<h3 class="t-op-nextlvl">1.2k</h3>
-							<h3 class="t-op-nextlvl">420</h3>
-							<h3 class="t-op-nextlvl label-tag">Published</h3>
-						</div>
-
-						<div class="item1">
-							<h3 class="t-op-nextlvl">Article 69</h3>
-							<h3 class="t-op-nextlvl">2.6k</h3>
-							<h3 class="t-op-nextlvl">190</h3>
-							<h3 class="t-op-nextlvl label-tag">Published</h3>
-						</div>
-
-						<div class="item1">
-							<h3 class="t-op-nextlvl">Article 68</h3>
-							<h3 class="t-op-nextlvl">1.9k</h3>
-							<h3 class="t-op-nextlvl">390</h3>
-							<h3 class="t-op-nextlvl label-tag">Published</h3>
-						</div>
-
-						<div class="item1">
-							<h3 class="t-op-nextlvl">Article 67</h3>
-							<h3 class="t-op-nextlvl">1.2k</h3>
-							<h3 class="t-op-nextlvl">580</h3>
-							<h3 class="t-op-nextlvl label-tag">Published</h3>
-						</div>
-
-						<div class="item1">
-							<h3 class="t-op-nextlvl">Article 66</h3>
-							<h3 class="t-op-nextlvl">3.6k</h3>
-							<h3 class="t-op-nextlvl">160</h3>
-							<h3 class="t-op-nextlvl label-tag">Published</h3>
-						</div>
-
-						<div class="item1">
-							<h3 class="t-op-nextlvl">Article 65</h3>
-							<h3 class="t-op-nextlvl">1.3k</h3>
-							<h3 class="t-op-nextlvl">220</h3>
-							<h3 class="t-op-nextlvl label-tag">Published</h3>
-						</div>
+						<ol>
+							{% for index, job in enumerate(job_data) %}
+								<li>
+									<strong>{{ index + 1 }}. Job Title:</strong> {{ job[1] }}<br>
+									<strong>Status:</strong> {{ job[9] }}<br>
+								</li>
+							{% endfor %}
+						</ol>
 
 					</div>
 				</div>

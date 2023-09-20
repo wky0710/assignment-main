@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 from pymysql import connections
 import os
 import boto3
@@ -180,6 +180,7 @@ def login():
                 # Data is found in the database
                 stored_password = data[1]
                 name = data[2]
+                session['user_login_name'] = name
 
                 # You should hash the provided password and compare it to the stored hashed password
                 hashed_password = hashlib.sha256(password.encode()).hexdigest()
@@ -481,7 +482,16 @@ def jobReg():
 
 @app.route("/companyDashboard", methods=['GET'])
 def companyDashboard():
-    return render_template('companyDashboard.html')
+    user_login_name = session.get('user_login_name')
+
+    # Fetch job data from the database (assuming you have a SQL query for this)
+    select_sql = "SELECT * FROM jobApply WHERE compName = %s"
+    cursor = db_conn.cursor()
+    cursor.execute(select_sql, ( user_login_name,))
+    job_data = cursor.fetchall()
+    cursor.close()
+    
+    return render_template('companyDashboard.html', job_data=job_data)
 
 # ------------------------------------------------------------------- Company END -------------------------------------------------------------------#
 
