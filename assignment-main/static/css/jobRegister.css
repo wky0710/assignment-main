@@ -90,16 +90,10 @@ ul.note-list li {
 
 .extralogo{
     position: relative;
-} 
-
-img {
-    position: absolute;
-    bottom: 0; /* Align to the bottom */
-    top: 100;
-    left: 10px; /* Adjust horizontal position as needed */
+    bottom: auto;
 } 
 
 .submit{
-    bottom: 0; /* Align to the bottom */
+    bottom: auto; /* Align to the bottom */
     text-align: center;
 } 
