@@ -25,7 +25,7 @@ output = {}
 table = 'students'
 
 
-@app.route("/", methods=['GET'], endpoint='index')
+@app.route("/", methods=['GET'])
 def index():
     return render_template('index.html')
 
