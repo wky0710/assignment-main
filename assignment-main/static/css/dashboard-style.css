@@ -341,7 +341,7 @@ width: 1120px;
 font-size: large;
 margin-top: 15px;
 display: flex;
-justify-content: space-between;
+justify-content: space-evenly;
 align-items: center;
 }
 
