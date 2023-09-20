@@ -88,12 +88,9 @@ ul.note-list li {
     height: 100%;
 }
 
-.extralogo{
-    position: relative;
-    bottom: auto;
-} 
-
-.submit{
-    bottom: auto; /* Align to the bottom */
-    text-align: center;
-} 
+.bottom-elements {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: auto; /* Pushes elements to the bottom */
+}
