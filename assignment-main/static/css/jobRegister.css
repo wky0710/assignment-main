@@ -95,7 +95,8 @@ ul.note-list li {
 img {
     position: absolute;
     top: 50;
-    margin: 25px;
+    align-items: end;
+    margin: 10px;
 } 
 
 .submit{
