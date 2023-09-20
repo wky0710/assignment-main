@@ -83,6 +83,7 @@ ul.note-list li {
 }
 
 .side-by-side {
+    flex: 1; /* Grow and shrink equally to fill the container */
     background-color: #dadad2;
     float: left;
     width: 50%; /* Adjust the width as needed */
