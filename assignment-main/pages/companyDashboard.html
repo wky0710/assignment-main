@@ -47,11 +47,15 @@
             <nav class="nav">
                 <div class="nav-upper-options">
                     <div class="nav-option option1">
-                        <h3><a style="color: white;" href="{{ url_for('companyDashboard')}}">Dashboard</a></h3>
+						<img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210182148/Untitled-design-(29).png"
+							class="nav-img" alt="dashboard">
+						<h3><a style="color: white;" href="{{ url_for('companyDashboard')}}">Dashboard</a></h3> 
                     </div>
 
-                    <div class="option2 nav-option">
-                        <h3><a href="{{ url_for('jobReg')}}">Job Application</a></h3>
+                    <div class="nav-option option2 ">
+						<img src= "{{ url_for('static', filename='img/icon/jobApplicationicon.png') }}"
+							class="nav-img" alt="dashboard">
+						<h3><a href="{{ url_for('jobReg')}}">Job Application</a></h3>
                     </div>
 
                     <div class="nav-option option3">
@@ -83,44 +87,10 @@
 			</div>
 
 			<div class="box-container">
-
-				<div class="box box1">
-					<div class="text">
-						<h2 class="topic-heading">60.5k</h2>
-						<h2 class="topic">Article Views</h2>
-					</div>
-
-					<img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210184645/Untitled-design-(31).png"
-						alt="Views">
+				<div class="hero__caption">
+					<span class="user-name">Welcome, {{ user_login_name }}</span>
 				</div>
-
-				<div class="box box2">
-					<div class="text">
-						<h2 class="topic-heading">150</h2>
-						<h2 class="topic">Likes</h2>
-					</div>
-
-					<img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210185030/14.png" alt="likes">
-				</div>
-
-				<div class="box box3">
-					<div class="text">
-						<h2 class="topic-heading">320</h2>
-						<h2 class="topic">Comments</h2>
-					</div>
-
-					<img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210184645/Untitled-design-(32).png"
-						alt="comments">
-				</div>
-
-				<div class="box box4">
-					<div class="text">
-						<h2 class="topic-heading">70</h2>
-						<h2 class="topic">Published</h2>
-					</div>
-
-					<img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210185029/13.png" alt="published">
-				</div>
+				
 			</div>
 
 			<div class="report-container">

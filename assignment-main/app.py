@@ -186,7 +186,7 @@ def login():
 
                 if password == stored_password:
                     # Passwords match, user is authenticated
-                    return render_template('companyDashboard.html')
+                    return render_template('companyDashboard.html', user_login_name=name)
                 else:
                     return render_template('login.html', pwd_error="Incorrect password. Please try again.")
             else:
@@ -444,12 +444,12 @@ def compRegister():
                     s3_location,
                     custombucket,
                     comp_image_file_name_in_s3)
-                return redirect(url_for('companyDashboard'))
+                return redirect(url_for('login'))  # Go to the dashboard after successful registration
             except Exception as e:
                 cursor.close()
                 print(f"Error during database insertion: {e}")
                 return str(e)  # Handle any database errors here
-                return redirect(url_for('login'))  # Go to the dashboard after successful registration
+                
         finally:
             cursor.close()
             
