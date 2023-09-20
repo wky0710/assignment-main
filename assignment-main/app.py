@@ -399,6 +399,7 @@ def compRegister():
         compName = request.form['compName']
         compEmail = request.form['compEmail']
         comPassword = request.form['comPassword']
+        companyImage = request.files['companyImage']
 
         # Check if the email is already in the database.
         cursor = db_conn.cursor()
@@ -410,6 +411,9 @@ def compRegister():
         if len(results) > 0:
             return render_template('compRegister.html', email_error="This company email is already in use.")
         
+        if companyImage.filename == "":
+            return "Please select a file"
+        
         insert_sql = "INSERT INTO company VALUES (%s, %s, %s)"
         cursor = db_conn.cursor()
         
@@ -420,10 +424,35 @@ def compRegister():
                                         ))
             db_conn.commit()
             cursor.close()
-            return redirect(url_for('login'))  # Go to the dashboard after successful registration
-        except Exception as e:
+
+             # Uplaod image file in S3 #
+            comp_image_file_name_in_s3 = "company-" + str(compName) + "_image_file"
+            s3 = boto3.resource('s3')
+        
+            try:
+                print("Data inserted in MySQL RDS... uploading image to S3...")
+                s3.Bucket(custombucket).put_object(Key=comp_image_file_name_in_s3, Body=companyImage)
+                bucket_location = boto3.client('s3').get_bucket_location(Bucket=custombucket)
+                s3_location = (bucket_location['LocationConstraint'])
+
+                if s3_location is None:
+                    s3_location = ''
+                else:
+                    s3_location = '-' + s3_location
+
+                object_url = "https://s3%7B0%7D.amazonaws.com/%7B1%7D/%7B2%7D".format(
+                    s3_location,
+                    custombucket,
+                    comp_image_file_name_in_s3)
+                return redirect(url_for('companyDashboard'))
+            except Exception as e:
+                cursor.close()
+                print(f"Error during database insertion: {e}")
+                return str(e)  # Handle any database errors here
+                return redirect(url_for('login'))  # Go to the dashboard after successful registration
+        finally:
             cursor.close()
-            return str(e)  # Handle any database errors here
+            
     return render_template('companyRegister.html')
 
 @app.route("/jobReg", methods=['GET', 'POST'])
@@ -438,43 +467,14 @@ def jobReg():
         contact_person_email = request.form['contact_person_email']
         contact_number = request.form['contact_number']
         comp_state = request.form['comp_state']
-        companyImage = request.files['companyImage']
         status = "pending"
 
         insert_sql = "INSERT INTO jobApply VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
         cursor = db_conn.cursor()
 
-        if companyImage.filename == "":
-            return "Please select a file"
- 
         cursor.execute(insert_sql, (comp_name, job_title, job_desc, job_req, sal_range, contact_person_name, contact_person_email, contact_number, comp_state,  status))
         db_conn.commit()
         cursor.close()
-
-        # Uplaod image file in S3 #
-        comp_image_file_name_in_s3 = "company-" + str(comp_name) + "_image_file"
-        s3 = boto3.resource('s3')
-        
-        try:
-            print("Data inserted in MySQL RDS... uploading image to S3...")
-            s3.Bucket(custombucket).put_object(Key=comp_image_file_name_in_s3, Body=companyImage)
-            bucket_location = boto3.client('s3').get_bucket_location(Bucket=custombucket)
-            s3_location = (bucket_location['LocationConstraint'])
-
-            if s3_location is None:
-                s3_location = ''
-            else:
-                s3_location = '-' + s3_location
-
-            object_url = "https://s3%7B0%7D.amazonaws.com/%7B1%7D/%7B2%7D".format(
-                s3_location,
-                custombucket,
-                comp_image_file_name_in_s3)
-            return redirect(url_for('companyDashboard'))
-        except Exception as e:
-            cursor.close()
-            print(f"Error during database insertion: {e}")
-            return str(e)  # Handle any database errors here
 
     return render_template('jobReg.html')
 
