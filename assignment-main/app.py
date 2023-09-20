@@ -393,14 +393,6 @@ def lectDashboard():
 
 # ------------------------------------------------------------------- Company START (Wong Kar Yan) -------------------------------------------------------------------#
 
-@app.route("/companyDashboard", methods=['GET'])
-def companyDashboard():
-    return render_template('companyDashboard.html')
-
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80, debug=True)
-
 @app.route("/compRegister", methods=['GET', 'POST'])
 def compRegister():
     if request.method == 'POST':
