@@ -109,8 +109,13 @@
 						<ol>
 							{% for job in job_data %}
 								<li class="items">
-									<strong>{{ job[1] }}</strong> 
-									<strong> {{ job[9] }}</strong><br>
+									<div style="float: left;">
+										<strong>{{ job[1] }}</strong>
+									</div>
+									<div style="float: right;">
+										<strong> {{ job[9] }}</strong>
+									</div>
+									<div style="clear: both;"></div><br>
 								</li>
 							{% endfor %}
 						</ol>
