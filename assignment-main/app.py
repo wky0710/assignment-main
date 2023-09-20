@@ -184,7 +184,7 @@ def compRegister():
                                         ))
             db_conn.commit()
             cursor.close()
-            return redirect(url_for('login'))  # Go to the dashboard after successful registration
+            return redirect(url_for('compLogin'))  # Go to the dashboard after successful registration
         except Exception as e:
             cursor.close()
             return str(e)  # Handle any database errors here
