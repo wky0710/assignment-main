@@ -21,6 +21,11 @@
             width: 15px;
             height: 15px;
         }
+        .delete-button{
+            align-items: center;
+            background-color: crimson;
+            color: black;
+        }
     </style>
 </head>
 
@@ -120,7 +125,8 @@
                             </div>
                             <div class="detail-content">
                                 <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="edit-img" alt="edit icon" id="job_desc">
-                                <p>Job description: {{ job[3] }}</p>
+                                <p>Job description: </p><br>
+                                <p>{{ job[3] }}</p>
 
                                 <!-- Edit form initially hidden -->
                                 <form id="editForm2" method="post" action="{{ url_for('edit_job', job_id=job[0]) }}" style="display: none;">
@@ -136,7 +142,8 @@
                             </div>
                             <div class="detail-content">
                                 <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="edit-img" alt="edit icon" id="job_req">
-                                <p>Job requirement: {{ job[4] }}</p>
+                                <p>Job requirement: </p><br>
+                                <p>{{ job[4] }}</p>
 
                                 <!-- Edit form initially hidden -->
                                 <form id="editForm3" method="post" action="{{ url_for('edit_job', job_id=job[0]) }}" style="display: none;">
@@ -229,6 +236,9 @@
                                 
                                     <button type="submit">Submit</button>
                                 </form>
+                            </div>
+                            <div class="delete-button">
+                                <button type="submit" method="post" action="{{ url_for('delete_job', job_id=job[0]) }}">Delete</button>
                             </div>
 						{% endfor %}
                     </div>
