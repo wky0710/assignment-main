@@ -4,6 +4,7 @@ import os
 import boto3
 from config import *
 import hashlib
+import urllib.parse
 
 app = Flask(__name__)
 app.secret_key = 'my_super_secret_key_12345'
@@ -502,8 +503,14 @@ def job_details(user_login_name, job_name):
     job_data = cursor.fetchone()
     cursor.close()
     
+    #build the object key
+    comp_image_file_name_in_s3 = "company-" + urllib.parse.quote_plus(user_login_name) + "_image_file"
+
+    #generate the s3 url
+    s3_url = "https://{0}.s3.amazonaws.com/{2}".format(custombucket, comp_image_file_name_in_s3)
+
     # Render the job details template and pass the job_data, job_name, and user_login_name
-    return render_template('jobDetails.html', job_data=job_data)
+    return render_template('jobDetails.html', job_data=job_data, s3_url=s3_url)
 
 
 # ------------------------------------------------------------------- Company END -------------------------------------------------------------------#
