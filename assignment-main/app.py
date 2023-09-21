@@ -494,7 +494,7 @@ def companyDashboard():
     return render_template('companyDashboard.html', user_login_name=name, job_data=job_data)
 
 @app.route('/jobDetail/<string:user_login_name>/<string:job_name>', methods=['GET'])
-def job_details(user_login_name, job_name):
+def jobDetail(user_login_name, job_name):
     
     # Fetch job details from the database using job_id
     cursor = db_conn.cursor()

@@ -109,7 +109,7 @@
 							{% for job in job_data %}
 								<li>
 									<div class="t-op2">
-                                        <a href="{{ url_for('job_details', user_login_name=user_login_name, job_name=job[1]) }}"><h4>{{ job[1] }}</h4></a>
+                                        <a href="{{ url_for('jobDetail', user_login_name=user_login_name, job_name=job[1]) }}"><h4>{{ job[1] }}</h4></a>
 									</div>
 									<div class="t-op2">
                                         {% if job[9] == "pending" %}
