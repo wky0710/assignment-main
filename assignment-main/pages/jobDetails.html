@@ -101,6 +101,7 @@
 							<div class="detail-content">
                                 <p>Job Title: {{ job[2] }}</p>
                                 <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="nav-img" alt="edit icon" id="editButton">
+                                
                                 <!-- Edit form initially hidden -->
                                 <form id="editForm" action="{{ url_for('edit_job', column_updated='job_title', job_id=job[0]) }}" style="display: none;">
                                     <!-- Editable fields -->
