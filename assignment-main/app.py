@@ -578,7 +578,7 @@ def edit_job(job_id):
         cursor.close()
 
     # Redirect to a confirmation page or back to the job details page
-    return redirect(url_for('jobDetail', job_data=job_data))
+    return redirect(url_for('companyDashboard'))
 
 
 # ------------------------------------------------------------------- Company END -------------------------------------------------------------------#
