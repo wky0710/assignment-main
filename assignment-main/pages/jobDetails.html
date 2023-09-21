@@ -341,29 +341,40 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        // Add a click event listener to delete buttons with the class 'delete-button'
-        $('.delete-button').click(function() {
-            var job_id = $(this).data('job-id'); // Extract the job_id from the button's data attribute
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add an event listener to all elements with the class 'delete-button'
+            const deleteButtons = document.querySelectorAll('.delete-button');
+            
+            deleteButtons.forEach(function(button) {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent the default behavior of the button
 
-            // Make an AJAX request to delete the job
-            $.ajax({
-                type: 'DELETE',
-                url: '/delete_job/' + job_id, // Replace with your actual delete route
-                success: function(response) {
-                    // Handle the response (e.g., show a confirmation message)
-                    console.log(response);
+                    // Get the job ID from a data attribute, e.g., data-job-id="J10001"
+                    const jobID = button.getAttribute('data-job-id');
 
-                    // Remove the deleted item from the UI (e.g., remove the parent container)
-                    $(this).closest('.detail-content').remove();
-                },
-                error: function(error) {
-                    console.error(error);
-                }
+                    // Send a POST request to the delete endpoint
+                    fetch(`/delete_job/${jobID}`, {
+                        method: 'POST',
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            // Job deleted successfully, you can handle this case here
+                            console.log('Job deleted successfully.');
+                            // Optionally, you can remove the deleted job from the page
+                            button.closest('.job-listing').remove();
+                        } else {
+                            // Handle errors, e.g., job not found or server error
+                            console.error('Failed to delete job.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                });
             });
         });
+
     </script>
-
-
 </body>
 
 </html

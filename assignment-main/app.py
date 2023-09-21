@@ -626,14 +626,15 @@ def edit_job(job_id):
     # Redirect to a confirmation page or back to the job details page
     return redirect(url_for('companyDashboard'))
 
-@app.route('/delete/<string:job_id>', methods=['DELETE'])
+@app.route('/delete_job/<string:job_id>', methods=['POST'])
 def delete_job(job_id):
-    if request.method == 'DELETE':
-        delete_sql = "DELETE FROM jobApply WHERE job_id= %s"
-        cursor = db_conn.cursor()
-        cursor.execute(delete_sql, (job_id,))
-        db_conn.commit()
-        cursor.close()
+    
+    delete_sql = "DELETE FROM jobApply WHERE job_id= %s"
+    cursor = db_conn.cursor()
+    cursor.execute(delete_sql, (job_id,))
+    db_conn.commit()
+    cursor.close()
+    
     return redirect(url_for('companyDashboard'))
 # ------------------------------------------------------------------- Company END -------------------------------------------------------------------#
 
