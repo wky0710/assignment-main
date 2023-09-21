@@ -506,8 +506,6 @@ def jobDetail(user_login_name, job_name):
     cursor.execute(select_sql, (user_login_name, decoded_job_name,))
     job_data = cursor.fetchone()
     cursor.close()
-
-    print(job_data.count)
     
     # Build the object key and URL
     comp_image_file_name_in_s3 = f"company-{urllib.parse.quote_plus(user_login_name)}_image_file"
