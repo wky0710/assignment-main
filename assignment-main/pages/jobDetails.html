@@ -107,7 +107,7 @@
                                 <p>Job Title: {{ job[2] }}</p>
                                 
                                 <!-- Edit form initially hidden -->
-                                <form id="editForm" method="post" action="{{ url_for('edit_job', job_id=job[0]) }}" style="display: none;">
+                                <form id="editForm1" method="post" action="{{ url_for('edit_job', job_id=job[0]) }}" style="display: none;">
                                     <!-- Editable fields -->
                                     <label for="updated_value">Job Title:</label>
                                     <input type="text" id="updated_value" name="updated_value" value="{{ job[2] }}" required>
@@ -123,7 +123,7 @@
                                 <p>Job description: {{ job[3] }}</p>
 
                                 <!-- Edit form initially hidden -->
-                                <form id="editForm" method="post" action="{{ url_for('edit_job', job_id=job[0]) }}" style="display: none;">
+                                <form id="editForm2" method="post" action="{{ url_for('edit_job', job_id=job[0]) }}" style="display: none;">
                                     <!-- Editable fields -->
                                     <label for="updated_value">Job description:</label>
                                     <input type="text" id="updated_value" name="updated_value" value="{{ job[3] }}" required>
@@ -139,7 +139,7 @@
                                 <p>Job requirement: {{ job[4] }}</p>
 
                                 <!-- Edit form initially hidden -->
-                                <form id="editForm" method="post" action="{{ url_for('edit_job', job_id=job[0]) }}" style="display: none;">
+                                <form id="editForm3" method="post" action="{{ url_for('edit_job', job_id=job[0]) }}" style="display: none;">
                                     <!-- Editable fields -->
                                     <label for="updated_value">Job requirement:</label>
                                     <input type="text" id="updated_value" name="updated_value" value="{{ job[4] }}" required>
@@ -155,7 +155,7 @@
                                 <p>Salary range: {{ job[5] }}</p>
 
                                 <!-- Edit form initially hidden -->
-                                <form id="editForm" method="post" action="{{ url_for('edit_job', job_id=job[0]) }}" style="display: none;">
+                                <form id="editForm4" method="post" action="{{ url_for('edit_job', job_id=job[0]) }}" style="display: none;">
                                     <!-- Editable fields -->
                                     <label for="updated_value">Salary range:</label>
                                     <input type="text" id="updated_value" name="updated_value" value="{{ job[5] }}" required>
@@ -171,7 +171,7 @@
                                 <p>Contact person name: {{ job[6] }}</p>
 
                                 <!-- Edit form initially hidden -->
-                                <form id="editForm" method="post" action="{{ url_for('edit_job', job_id=job[0]) }}" style="display: none;">
+                                <form id="editForm5" method="post" action="{{ url_for('edit_job', job_id=job[0]) }}" style="display: none;">
                                     <!-- Editable fields -->
                                     <label for="updated_value">Contact person name:</label>
                                     <input type="text" id="updated_value" name="updated_value" value="{{ job[6] }}" required>
@@ -187,7 +187,7 @@
                                 <p>Contact person email: {{ job[7] }}</p>
 
                                 <!-- Edit form initially hidden -->
-                                <form id="editForm" method="post" action="{{ url_for('edit_job', job_id=job[0]) }}" style="display: none;">
+                                <form id="editForm6" method="post" action="{{ url_for('edit_job', job_id=job[0]) }}" style="display: none;">
                                     <!-- Editable fields -->
                                     <label for="updated_value">Contact person email:</label>
                                     <input type="text" id="updated_value" name="updated_value" value="{{ job[7] }}" required>
@@ -203,7 +203,7 @@
                                 <p>Contact number: {{ job[8] }}</p>
 
                                 <!-- Edit form initially hidden -->
-                                <form id="editForm" method="post" action="{{ url_for('edit_job', job_id=job[0]) }}" style="display: none;">
+                                <form id="editForm7" method="post" action="{{ url_for('edit_job', job_id=job[0]) }}" style="display: none;">
                                     <!-- Editable fields -->
                                     <label for="updated_value">Contact number:</label>
                                     <input type="text" id="updated_value" name="updated_value" value="{{ job[8] }}" required>
@@ -219,7 +219,7 @@
                                 <p>Company state: {{ job[9] }}</p>
 
                                 <!-- Edit form initially hidden -->
-                                <form id="editForm" method="post" action="{{ url_for('edit_job', job_id=job[0]) }}" style="display: none;">
+                                <form id="editForm8" method="post" action="{{ url_for('edit_job', job_id=job[0]) }}" style="display: none;">
                                     <!-- Editable fields -->
                                     <label for="updated_value">Company state:</label>
                                     <input type="text" id="updated_value" name="updated_value" value="{{ job[9] }}" required>
@@ -245,7 +245,7 @@
     <script>
         document.getElementById('job_title').addEventListener('click', function() {
             // Toggle the visibility of the edit form
-            var editForm = document.getElementById('editForm');
+            var editForm = document.getElementById('editForm1');
             if (editForm.style.display === 'none' || editForm.style.display === '') {
                 editForm.style.display = 'block';
             } else {
@@ -255,7 +255,7 @@
 
         document.getElementById('job_desc').addEventListener('click', function() {
             // Toggle the visibility of the edit form
-            var editForm = document.getElementById('editForm');
+            var editForm = document.getElementById('editForm2');
             if (editForm.style.display === 'none' || editForm.style.display === '') {
                 editForm.style.display = 'block';
             } else {
@@ -265,7 +265,7 @@
 
         document.getElementById('job_req').addEventListener('click', function() {
             // Toggle the visibility of the edit form
-            var editForm = document.getElementById('editForm');
+            var editForm = document.getElementById('editForm3');
             if (editForm.style.display === 'none' || editForm.style.display === '') {
                 editForm.style.display = 'block';
             } else {
@@ -275,17 +275,17 @@
 
         document.getElementById('sal_range').addEventListener('click', function() {
             // Toggle the visibility of the edit form
-            var editForm = document.getElementById('editForm');
+            var editForm = document.getElementById('editForm4');
             if (editForm.style.display === 'none' || editForm.style.display === '') {
                 editForm.style.display = 'block';
             } else {
                 editForm.style.display = 'none';
             }
         });
-        
+
         document.getElementById('contact_person_name').addEventListener('click', function() {
             // Toggle the visibility of the edit form
-            var editForm = document.getElementById('editForm');
+            var editForm = document.getElementById('editForm5');
             if (editForm.style.display === 'none' || editForm.style.display === '') {
                 editForm.style.display = 'block';
             } else {
@@ -295,7 +295,7 @@
 
         document.getElementById('contact_person_email').addEventListener('click', function() {
             // Toggle the visibility of the edit form
-            var editForm = document.getElementById('editForm');
+            var editForm = document.getElementById('editForm6');
             if (editForm.style.display === 'none' || editForm.style.display === '') {
                 editForm.style.display = 'block';
             } else {
@@ -305,7 +305,7 @@
 
         document.getElementById('contact_number').addEventListener('click', function() {
             // Toggle the visibility of the edit form
-            var editForm = document.getElementById('editForm');
+            var editForm = document.getElementById('editForm7');
             if (editForm.style.display === 'none' || editForm.style.display === '') {
                 editForm.style.display = 'block';
             } else {
@@ -315,7 +315,7 @@
 
         document.getElementById('comp_state').addEventListener('click', function() {
             // Toggle the visibility of the edit form
-            var editForm = document.getElementById('editForm');
+            var editForm = document.getElementById('editForm8');
             if (editForm.style.display === 'none' || editForm.style.display === '') {
                 editForm.style.display = 'block';
             } else {
