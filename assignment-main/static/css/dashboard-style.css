@@ -324,8 +324,7 @@ max-width: 1160px;
 overflow-x: auto;
 padding: 20px;
 }
-.report-topic-heading,
-.item1 {
+.report-topic-heading {
 width: 1120px;
 display: flex;
 justify-content: space-between;
