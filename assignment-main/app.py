@@ -634,7 +634,7 @@ def delete_job(job_id):
         cursor.execute(delete_sql, (job_id,))
         db_conn.commit()
         cursor.close()
-    return 
+    return redirect(url_for('companyDashboard'))
 # ------------------------------------------------------------------- Company END -------------------------------------------------------------------#
 
 if __name__ == '__main__':
