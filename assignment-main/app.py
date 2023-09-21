@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, jsonify, render_template, request, redirect, url_for, session
 from pymysql import connections
 import os
 import boto3
@@ -403,6 +403,20 @@ def compRegister():
         comPassword = request.form['comPassword']
         companyImage = request.files['companyImage']
 
+        # Fetch data from the database here
+        cursor = db_conn.cursor()
+        select_sql = "SELECT max(compID) FROM company"
+        cursor.execute(select_sql)
+        data = cursor.fetchone()  # Fetch a single row
+        data = str(data[0])
+
+        print(data)
+        if data == None:
+            compID = 'C' + str(10001)
+        else:
+            comp_no = int(data[1:]) + 1
+            compID = 'C' + str(comp_no)
+
         # Check if the email is already in the database.
         cursor = db_conn.cursor()
         cursor.execute("SELECT * FROM company WHERE compEmail=%s", (compEmail))
@@ -416,13 +430,15 @@ def compRegister():
         if companyImage.filename == "":
             return "Please select a file"
         
-        insert_sql = "INSERT INTO company VALUES (%s, %s, %s)"
+        insert_sql = "INSERT INTO company VALUES (%s, %s, %s, %s, %s)"
         cursor = db_conn.cursor()
         
         try:
-            cursor.execute(insert_sql, (compName, 
+            cursor.execute(insert_sql, (compID,
+                                        compName, 
                                         compEmail,
-                                        comPassword
+                                        comPassword,
+                                        'pending'
                                         ))
             db_conn.commit()
             cursor.close()
@@ -469,12 +485,25 @@ def jobReg():
         contact_person_email = request.form['contact_person_email']
         contact_number = request.form['contact_number']
         comp_state = request.form['comp_state']
-        status = "pending"
+
+        # Fetch data from the database here
+        cursor = db_conn.cursor()
+        select_sql = "SELECT max(job_id) FROM company"
+        cursor.execute(select_sql)
+        data = cursor.fetchone()  # Fetch a single row
+        data = str(data[0])
+
+        print(data)
+        if data == None:
+            job_id = 'C' + str(10001)
+        else:
+            comp_no = int(data[1:]) + 1
+            job_id = 'C' + str(comp_no)
 
         insert_sql = "INSERT INTO jobApply VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
         cursor = db_conn.cursor()
 
-        cursor.execute(insert_sql, (comp_name, job_title, job_desc, job_req, sal_range, contact_person_name, contact_person_email, contact_number, comp_state,  status))
+        cursor.execute(insert_sql, (job_id, comp_name, job_title, job_desc, job_req, sal_range, contact_person_name, contact_person_email, contact_number, comp_state))
         db_conn.commit()
         cursor.close()
 
@@ -514,7 +543,8 @@ def jobDetail(user_login_name, job_name):
     cursor.execute(select_sql, (user_login_name, decoded_job_name,))
     job_data = cursor.fetchall()
     cursor.close()
-    
+    session['job_data'] = job_data
+
     # Build the object key and URL
     comp_image_file_name_in_s3 = f"company-{urllib.parse.quote_plus(user_login_name)}_image_file"
    
@@ -528,6 +558,28 @@ def jobDetail(user_login_name, job_name):
 
     # Render the job details template and pass the job_data, job_name, and user_login_name
     return render_template('jobDetails.html', job_data=job_data, list_of_files=list_of_files)
+
+
+@app.route('/edit/<string:columnUpdated>/<string:job_id>', methods=['GET', 'POST'])
+def edit_job(columnUpdated, job_id):
+
+    if request.method == 'POST':
+        
+        job_data = session.get('job_data', None)
+        updated_job_title = request.form.get(columnUpdated)    
+
+        update_sql = "UPDATE jobApply SET %s = %s WHERE job_id = %s"
+        cursor = db_conn.cursor()
+
+        cursor.execute(update_sql, (columnUpdated, updated_job_title, job_id,))
+        db_conn.commit()
+        cursor.close()
+
+        # Redirect to a confirmation page or back to the job details page
+        return redirect(url_for('job_details', job_data=job_data))
+
+    # Render the edit form with the current data
+    return jsonify({'message': 'Job updated successfully'})
 
 
 # ------------------------------------------------------------------- Company END -------------------------------------------------------------------#
