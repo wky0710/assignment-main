@@ -103,7 +103,7 @@
                                 <p>Job id: {{ job[0] }}</p>
                             </div>
 							<div class="detail-content">
-                                <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="edit-img" alt="edit icon" data-target="job_title">
+                                <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="edit-img" alt="edit icon" id="job_title">
                                 <p>Job Title: {{ job[2] }}</p>
                                 
                                 <!-- Edit form initially hidden -->
@@ -119,7 +119,7 @@
                                 </form>
                             </div>
                             <div class="detail-content">
-                                <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="edit-img" alt="edit icon" data-target="job_desc">
+                                <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="edit-img" alt="edit icon" id="job_desc">
                                 <p>Job description: {{ job[3] }}</p>
 
                                 <!-- Edit form initially hidden -->
@@ -135,7 +135,7 @@
                                 </form>
                             </div>
                             <div class="detail-content">
-                                <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="edit-img" alt="edit icon" data-target="job_req">
+                                <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="edit-img" alt="edit icon" id="job_req">
                                 <p>Job requirement: {{ job[4] }}</p>
 
                                 <!-- Edit form initially hidden -->
@@ -151,7 +151,7 @@
                                 </form>
                             </div>
                             <div class="detail-content">
-                                <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="edit-img" alt="edit icon" data-target="sal_range">
+                                <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="edit-img" alt="edit icon" id="sal_range">
                                 <p>Salary range: {{ job[5] }}</p>
 
                                 <!-- Edit form initially hidden -->
@@ -167,7 +167,7 @@
                                 </form>
                             </div>
                             <div class="detail-content">
-                                <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="edit-img" alt="edit icon" data-target="contact_person_name">
+                                <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="edit-img" alt="edit icon" id="contact_person_name">
                                 <p>Contact person name: {{ job[6] }}</p>
 
                                 <!-- Edit form initially hidden -->
@@ -183,7 +183,7 @@
                                 </form>
                             </div>
                             <div class="detail-content">
-                                <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="edit-img" alt="edit icon" data-target="contact_person_email">
+                                <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="edit-img" alt="edit icon" id="contact_person_email">
                                 <p>Contact person email: {{ job[7] }}</p>
 
                                 <!-- Edit form initially hidden -->
@@ -199,7 +199,7 @@
                                 </form>
                             </div>
                             <div class="detail-content">
-                                <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="edit-img" alt="edit icon" data-target="contact_number">
+                                <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="edit-img" alt="edit icon" id="contact_number">
                                 <p>Contact number: {{ job[8] }}</p>
 
                                 <!-- Edit form initially hidden -->
@@ -215,7 +215,7 @@
                                 </form>
                             </div>
                             <div class="detail-content">
-                                <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="edit-img" alt="edit icon" data-target="comp_state">
+                                <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="edit-img" alt="edit icon" id="comp_state">
                                 <p>Company state: {{ job[9] }}</p>
 
                                 <!-- Edit form initially hidden -->
@@ -247,9 +247,11 @@
         var editImages = document.querySelectorAll('.edit-img');
         editImages.forEach(function(editImage) {
             editImage.addEventListener('click', function() {
-                // Find the associated form using the data-target attribute
-                var target = this.getAttribute('data-target');
-                var editForm = document.querySelector('.edit-form[data-target="' + target + '"]');
+                // Get the ID of the clicked element (e.g., "job_title")
+                var id = this.id;
+
+                // Find the associated form using the column name
+                var editForm = document.querySelector('.edit-form [name="column"][value="' + column + '"]').parentNode;
     
                 // Toggle the visibility of the edit form
                 if (editForm.style.display === 'none' || editForm.style.display === '') {
