@@ -93,7 +93,14 @@
                 <div class="report-body">
 
                     <div class="detail-container">
-                        <img src="{{ s3_url }}" alt="Company Image"><br>
+
+                        s3_base_url = "https://wky-company.s3.amazonaws.com/"
+
+                        file_key = "{{ list_of_files}}"
+
+                        img_url = f"{s3_base_url}{file_key}"
+
+                        <img src=img_url alt="Company Image"><br>
                         {% for job in job_data %}
 							<div class="detail-content">
                                 <span>Job Title: {{ job[1] }}</span>
