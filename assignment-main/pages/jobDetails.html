@@ -106,7 +106,7 @@
                                 <form id="editForm" action="{{ url_for('edit_job', job_id=job[0]) }}" style="display: none;">
                                     <!-- Editable fields -->
                                     <label for="updated_value">Job Title:</label>
-                                    <input type="text" id="updated_value" name="updated_value" value="{{ job[1] }}" required>
+                                    <input type="text" id="updated_value" name="updated_value" value="{{ job[2] }}" required>
 
                                     <!-- Add a hidden input field to specify the column being updated -->
                                     <input type="hidden" name="job_title" value="job_title">
