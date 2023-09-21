@@ -4,7 +4,8 @@ import os
 import boto3
 from config import *
 import hashlib
-import urllib.parse
+import urllib.parse 
+from urllib.parse import unquote_plus
 
 app = Flask(__name__)
 app.secret_key = 'my_super_secret_key_12345'
@@ -496,10 +497,13 @@ def companyDashboard():
 @app.route('/jobDetail/<string:user_login_name>/<string:job_name>', methods=['GET'])
 def jobDetail(user_login_name, job_name):
     
+     # URL-decode the job_name to get the original string
+    decoded_job_name = unquote_plus(job_name)
+
     # Fetch job details from the database using job_id
     cursor = db_conn.cursor()
     select_sql = "SELECT * FROM jobApply WHERE comp_name = %s AND job_title = %s"
-    cursor.execute(select_sql, (user_login_name, job_name,))
+    cursor.execute(select_sql, (user_login_name, decoded_job_name,))
     job_data = cursor.fetchone()
     cursor.close()
 
