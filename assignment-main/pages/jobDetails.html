@@ -232,8 +232,8 @@
                                     <button type="submit">Submit</button>
                                 </form>
                             </div>
-                            <div class="delete-button">
-                                <button type="submit" method="post" action="{{ url_for('delete_job', job_id=job[0]) }}" style="background-color: crimson; color: black;"><b>Delete</b></button>
+                            <div>
+                                <button class="delete-button" data-job-id="{{ job[0] }}" style="background-color: crimson; color: black;"><b>Delete</b></button>
                             </div>
 						{% endfor %}
                     </div>
@@ -328,6 +328,42 @@
             }
         });
     </script>
+
+    <script>
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const deleteButton = document.querySelectorAll('.delete-button');
+
+        deleteButton.addEventListener('click', function() {
+            redirect(url_for('delete_job', job_id=job[0]))
+        });
+    </script>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        // Add a click event listener to delete buttons with the class 'delete-button'
+        $('.delete-button').click(function() {
+            var job_id = $(this).data('job-id'); // Extract the job_id from the button's data attribute
+
+            // Make an AJAX request to delete the job
+            $.ajax({
+                type: 'DELETE',
+                url: '/delete_job/' + job_id, // Replace with your actual delete route
+                success: function(response) {
+                    // Handle the response (e.g., show a confirmation message)
+                    console.log(response);
+
+                    // Remove the deleted item from the UI (e.g., remove the parent container)
+                    $(this).closest('.detail-content').remove();
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
+        });
+    </script>
+
+
 </body>
 
 </html
