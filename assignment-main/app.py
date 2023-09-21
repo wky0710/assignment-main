@@ -492,6 +492,20 @@ def companyDashboard():
 
     return render_template('companyDashboard.html', user_login_name=name, job_data=job_data)
 
+@app.route('/jobDetail/<string:user_login_name>/<string:job_name>', methods=['GET'])
+def job_details(user_login_name, job_name):
+    
+    # Fetch job details from the database using job_id
+    cursor = db_conn.cursor()
+    select_sql = "SELECT * FROM jobApply WHERE comp_name = %s AND job_title = %s"
+    cursor.execute(select_sql, (user_login_name, job_name,))
+    job_data = cursor.fetchone()
+    cursor.close()
+    
+    # Render the job details template and pass the job_data, job_name, and user_login_name
+    return render_template('jobDetails.html', job_data=job_data)
+
+
 # ------------------------------------------------------------------- Company END -------------------------------------------------------------------#
 
 if __name__ == '__main__':
