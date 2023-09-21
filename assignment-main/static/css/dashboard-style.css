@@ -335,14 +335,12 @@ align-items: center;
 font-size: 18px;
 letter-spacing: 0px;
 }
-.items {
+.t-op2 {
 width: 1120px;
-font-size: large;
-margin-top: 15px;
-display: flex;
-justify-content: space-between;
-align-items: center;
+font-size: 22px;
+letter-spacing: 0px;
 }
+
 
 .item1 {
 margin-top: 20px;
