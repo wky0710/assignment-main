@@ -243,17 +243,12 @@
     <script type="text/javascript" src="{{ url_for('static', filename='js/company.js')}}"></script>
 
     <script>
-        // Add a click event listener to all elements with class "edit-img"
-        var editImages = document.querySelectorAll('.edit-img');
-        editImages.forEach(function(editImage) {
-            editImage.addEventListener('click', function() {
-                // Get the ID of the clicked element (e.g., "job_title")
-                var id = this.id;
-
-                // Find the associated form using the column name
-                var editForm = document.querySelector('.edit-form [name="column"][value="' + column + '"]').parentNode;
+        column_names = ['job_title', 'job_desc', 'job_req', 'sal_range', 'contact_person_name', 'contact_person_email', 'contact_number', 'comp_state'];
     
+        column_names.forEach(function(column) {
+            document.getElementById(column).addEventListener('click', function() {
                 // Toggle the visibility of the edit form
+                var editForm = document.getElementById(column + '_editForm');
                 if (editForm.style.display === 'none' || editForm.style.display === '') {
                     editForm.style.display = 'block';
                 } else {
