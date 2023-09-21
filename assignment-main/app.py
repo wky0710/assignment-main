@@ -560,18 +560,19 @@ def jobDetail(user_login_name, job_name):
     return render_template('jobDetails.html', job_data=job_data, list_of_files=list_of_files)
 
 
-@app.route('/edit/<string:columnUpdated>/<string:job_id>', methods=['GET', 'POST'])
-def edit_job(columnUpdated, job_id):
+@app.route('/edit/<string:job_id>', methods=['GET', 'POST'])
+def edit_job(job_id):
 
     if request.method == 'POST':
         
         job_data = session.get('job_data', None)
-        updated_job_title = request.form.get(columnUpdated)    
+        updated_job_title = request.form.get('updated_value')   
+        job_title = request.form.get('job_title')   
 
-        update_sql = "UPDATE jobApply SET %s = %s WHERE job_id = %s"
+        update_sql = "UPDATE jobApply SET job_title = %s WHERE job_id = %s"
         cursor = db_conn.cursor()
 
-        cursor.execute(update_sql, (columnUpdated, updated_job_title, job_id,))
+        cursor.execute(update_sql, (updated_job_title, job_id,))
         db_conn.commit()
         cursor.close()
 
