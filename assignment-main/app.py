@@ -504,7 +504,7 @@ def jobDetail(user_login_name, job_name):
     cursor = db_conn.cursor()
     select_sql = "SELECT * FROM jobApply WHERE comp_name = %s AND job_title = %s"
     cursor.execute(select_sql, (user_login_name, decoded_job_name,))
-    job_data = cursor.fetchone()
+    job_data = cursor.fetchall()
     cursor.close()
     
     print(job_data)
