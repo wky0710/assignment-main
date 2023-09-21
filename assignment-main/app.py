@@ -576,11 +576,8 @@ def edit_job(job_id):
         db_conn.commit()
         cursor.close()
 
-        # Redirect to a confirmation page or back to the job details page
-        return redirect(url_for('job_details', job_data=job_data))
-
-    # Render the edit form with the current data
-    return render_template('jobDetails.html', job_data=job_data)
+    # Redirect to a confirmation page or back to the job details page
+    return redirect(url_for('job_details', job_data=job_data))
 
 
 # ------------------------------------------------------------------- Company END -------------------------------------------------------------------#
