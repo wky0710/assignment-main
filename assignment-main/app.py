@@ -490,7 +490,7 @@ def companyDashboard():
     job_data = cursor.fetchall()
     cursor.close()
 
-    return render_template('companyDashboard.html', job_data=job_data)
+    return render_template('companyDashboard.html', user_login_name=name, job_data=job_data)
 
 # ------------------------------------------------------------------- Company END -------------------------------------------------------------------#
 
