@@ -360,6 +360,7 @@
                         if (response.ok) {
                             // Job deleted successfully, you can handle this case here
                             console.log('Job deleted successfully.');
+                            window.alert('Job deleted successfully.'); // Display a pop-up alert
                             // Optionally, you can remove the deleted job from the page
                             button.closest('.job-listing').remove();
                         } else {
