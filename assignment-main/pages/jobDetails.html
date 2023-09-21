@@ -96,7 +96,8 @@
                         <img src="{{ list_of_files }}" alt="Company Image"><br>
                         {% for job in job_data %}
 							<div class="detail-content">
-                                <span>Job Title: {{ job[1] }}</span>
+                                <p>Job Title: {{ job[1] }}</p>
+                                <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="nav-img" alt="edit icon">
                             </div>
                             <div class="detail-content">
                                 <p>Job description: {{ job[2] }}</p>
