@@ -523,6 +523,7 @@ def jobDetail(user_login_name, job_name):
 
     bucket = s3.Bucket(custombucket)
     list_of_files = list_files(bucket, comp_image_file_name_in_s3)
+    print(list_of_files)
 
 
     # Render the job details template and pass the job_data, job_name, and user_login_name
