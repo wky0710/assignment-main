@@ -493,7 +493,7 @@ def companyDashboard():
 
     return render_template('companyDashboard.html', user_login_name=name, job_data=job_data)
 
-@app.route('/jobDetail/<string:user_login_name>/<string:job_name>', methods=['GET'])
+@app.route('/jobDetail/<varchar:user_login_name>/<varchar:job_name>', methods=['GET'])
 def jobDetail(user_login_name, job_name):
     
     # Fetch job details from the database using job_id
@@ -502,12 +502,13 @@ def jobDetail(user_login_name, job_name):
     cursor.execute(select_sql, (user_login_name, job_name,))
     job_data = cursor.fetchone()
     cursor.close()
-    
-    #build the object key
-    comp_image_file_name_in_s3 = "company-" + urllib.parse.quote_plus(user_login_name) + "_image_file"
 
-    #generate the s3 url
-    s3_url = "https://{0}.s3.amazonaws.com/{1}".format(custombucket, comp_image_file_name_in_s3)
+    print(job_data.count)
+    
+    # Build the object key and URL
+    comp_image_file_name_in_s3 = f"company-{urllib.parse.quote_plus(user_login_name)}_image_file"
+    s3_url = f"https://{custombucket}.s3.amazonaws.com/{comp_image_file_name_in_s3}"
+
 
     # Render the job details template and pass the job_data, job_name, and user_login_name
     return render_template('jobDetails.html', job_data=job_data, s3_url=s3_url)
