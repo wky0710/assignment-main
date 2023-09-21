@@ -563,9 +563,10 @@ def jobDetail(user_login_name, job_name):
 @app.route('/edit/<string:job_id>', methods=['GET', 'POST'])
 def edit_job(job_id):
 
+    job_data = session.get('job_data', None)
+    
     if request.method == 'POST':
         
-        job_data = session.get('job_data', None)
         updated_job_title = request.form.get('updated_value')   
         job_title = request.form.get('job_title')   
 
