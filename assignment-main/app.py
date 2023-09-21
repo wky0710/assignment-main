@@ -499,7 +499,7 @@ def list_files(bucket, path_name):
     contents = []
 
     for image in bucket.objects.filter(Prefix=path_name):
-        contents.append(image.key)
+        contents.append("https://wky-company.s3.amazonaws.com/" + image.key)
     return contents
 
 @app.route('/jobDetail/<string:user_login_name>/<string:job_name>', methods=['GET'])
