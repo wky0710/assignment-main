@@ -507,7 +507,7 @@ def jobDetail(user_login_name, job_name):
     comp_image_file_name_in_s3 = "company-" + urllib.parse.quote_plus(user_login_name) + "_image_file"
 
     #generate the s3 url
-    s3_url = "https://{0}.s3.amazonaws.com/{2}".format(custombucket, comp_image_file_name_in_s3)
+    s3_url = "https://{0}.s3.amazonaws.com/{1}".format(custombucket, comp_image_file_name_in_s3)
 
     # Render the job details template and pass the job_data, job_name, and user_login_name
     return render_template('jobDetails.html', job_data=job_data, s3_url=s3_url)
