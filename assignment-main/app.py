@@ -564,7 +564,7 @@ def jobDetail(user_login_name, job_name):
 def edit_job(job_id):
 
     job_data = session.get('job_data', None)
-    
+
     if request.method == 'POST':
         
         updated_job_title = request.form.get('updated_value')   
@@ -578,7 +578,7 @@ def edit_job(job_id):
         cursor.close()
 
     # Redirect to a confirmation page or back to the job details page
-    return redirect(url_for('job_details', job_data=job_data))
+    return redirect(url_for('jobDetail', job_data=job_data))
 
 
 # ------------------------------------------------------------------- Company END -------------------------------------------------------------------#
