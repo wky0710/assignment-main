@@ -17,6 +17,10 @@
             padding: 10px;
             margin: 10px;
         }
+        .edit-img{
+            width: 15px;
+            height: 15px;
+        }
     </style>
 </head>
 
@@ -99,8 +103,8 @@
                                 <p>Job id: {{ job[0] }}</p>
                             </div>
 							<div class="detail-content">
+                                <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="edit-img" alt="edit icon" id="editButton">
                                 <p>Job Title: {{ job[2] }}</p>
-                                <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="nav-img" alt="edit icon" id="editButton">
                                 
                                 <!-- Edit form initially hidden -->
                                 <form id="editForm" method="post" action="{{ url_for('edit_job', job_id=job[0]) }}" style="display: none;">
@@ -109,31 +113,122 @@
                                     <input type="text" id="updated_value" name="updated_value" value="{{ job[2] }}" required>
 
                                     <!-- Add a hidden input field to specify the column being updated -->
-                                    <input type="hidden" name="job_title" value="job_title">
+                                    <input type="hidden" name="column" value="job_title">
                                 
                                     <button type="submit">Submit</button>
                                 </form>
                             </div>
                             <div class="detail-content">
+                                <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="edit-img" alt="edit icon" id="editButton">
                                 <p>Job description: {{ job[3] }}</p>
+
+                                <!-- Edit form initially hidden -->
+                                <form id="editForm" method="post" action="{{ url_for('edit_job', job_id=job[0]) }}" style="display: none;">
+                                    <!-- Editable fields -->
+                                    <label for="updated_value">Job description:</label>
+                                    <input type="text" id="updated_value" name="updated_value" value="{{ job[3] }}" required>
+
+                                    <!-- Add a hidden input field to specify the column being updated -->
+                                    <input type="hidden" name="column" value="job_desc">
+                                
+                                    <button type="submit">Submit</button>
+                                </form>
                             </div>
                             <div class="detail-content">
+                                <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="edit-img" alt="edit icon" id="editButton">
                                 <p>Job requirement: {{ job[4] }}</p>
+
+                                <!-- Edit form initially hidden -->
+                                <form id="editForm" method="post" action="{{ url_for('edit_job', job_id=job[0]) }}" style="display: none;">
+                                    <!-- Editable fields -->
+                                    <label for="updated_value">Job requirement:</label>
+                                    <input type="text" id="updated_value" name="updated_value" value="{{ job[4] }}" required>
+
+                                    <!-- Add a hidden input field to specify the column being updated -->
+                                    <input type="hidden" name="column" value="job_req">
+                                
+                                    <button type="submit">Submit</button>
+                                </form>
                             </div>
                             <div class="detail-content">
+                                <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="edit-img" alt="edit icon" id="editButton">
                                 <p>Salary range: {{ job[5] }}</p>
+
+                                <!-- Edit form initially hidden -->
+                                <form id="editForm" method="post" action="{{ url_for('edit_job', job_id=job[0]) }}" style="display: none;">
+                                    <!-- Editable fields -->
+                                    <label for="updated_value">Salary range:</label>
+                                    <input type="text" id="updated_value" name="updated_value" value="{{ job[5] }}" required>
+
+                                    <!-- Add a hidden input field to specify the column being updated -->
+                                    <input type="hidden" name="column" value="sal_range">
+                                
+                                    <button type="submit">Submit</button>
+                                </form>
                             </div>
                             <div class="detail-content">
-                                <p>contact person name: {{ job[6] }}</p>
+                                <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="edit-img" alt="edit icon" id="editButton">
+                                <p>Contact person name: {{ job[6] }}</p>
+
+                                <!-- Edit form initially hidden -->
+                                <form id="editForm" method="post" action="{{ url_for('edit_job', job_id=job[0]) }}" style="display: none;">
+                                    <!-- Editable fields -->
+                                    <label for="updated_value">Contact person name:</label>
+                                    <input type="text" id="updated_value" name="updated_value" value="{{ job[6] }}" required>
+
+                                    <!-- Add a hidden input field to specify the column being updated -->
+                                    <input type="hidden" name="column" value="contact_person_name">
+                                
+                                    <button type="submit">Submit</button>
+                                </form>
                             </div>
                             <div class="detail-content">
+                                <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="edit-img" alt="edit icon" id="editButton">
                                 <p>Contact person email: {{ job[7] }}</p>
+
+                                <!-- Edit form initially hidden -->
+                                <form id="editForm" method="post" action="{{ url_for('edit_job', job_id=job[0]) }}" style="display: none;">
+                                    <!-- Editable fields -->
+                                    <label for="updated_value">Contact person email:</label>
+                                    <input type="text" id="updated_value" name="updated_value" value="{{ job[7] }}" required>
+
+                                    <!-- Add a hidden input field to specify the column being updated -->
+                                    <input type="hidden" name="column" value="contact_person_email">
+                                
+                                    <button type="submit">Submit</button>
+                                </form>
                             </div>
                             <div class="detail-content">
+                                <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="edit-img" alt="edit icon" id="editButton">
                                 <p>Contact number: {{ job[8] }}</p>
+
+                                <!-- Edit form initially hidden -->
+                                <form id="editForm" method="post" action="{{ url_for('edit_job', job_id=job[0]) }}" style="display: none;">
+                                    <!-- Editable fields -->
+                                    <label for="updated_value">Contact number:</label>
+                                    <input type="text" id="updated_value" name="updated_value" value="{{ job[8] }}" required>
+
+                                    <!-- Add a hidden input field to specify the column being updated -->
+                                    <input type="hidden" name="column" value="contact_number>
+                                
+                                    <button type="submit">Submit</button>
+                                </form>
                             </div>
                             <div class="detail-content">
+                                <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="edit-img" alt="edit icon" id="editButton">
                                 <p>Company state: {{ job[9] }}</p>
+
+                                <!-- Edit form initially hidden -->
+                                <form id="editForm" method="post" action="{{ url_for('edit_job', job_id=job[0]) }}" style="display: none;">
+                                    <!-- Editable fields -->
+                                    <label for="updated_value">Company state:</label>
+                                    <input type="text" id="updated_value" name="updated_value" value="{{ job[9] }}" required>
+
+                                    <!-- Add a hidden input field to specify the column being updated -->
+                                    <input type="hidden" name="column" value="comp_state">
+                                
+                                    <button type="submit">Submit</button>
+                                </form>
                             </div>
 						{% endfor %}
                     </div>

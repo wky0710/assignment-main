@@ -563,20 +563,68 @@ def jobDetail(user_login_name, job_name):
 @app.route('/edit/<string:job_id>', methods=['GET', 'POST'])
 def edit_job(job_id):
 
-    job_data = session.get('job_data', None)
-
     if request.method == 'POST':
         
-        updated_job_title = request.form.get('updated_value')   
-        job_title = request.form.get('job_title')   
+        column = request.form.get('column') 
+        updated_value = request.form.get('updated_value')   
 
-        update_sql = "UPDATE jobApply SET job_title = %s WHERE job_id = %s"
-        cursor = db_conn.cursor()
+        if column == 'job_title':
 
-        cursor.execute(update_sql, (updated_job_title, job_id,))
-        db_conn.commit()
-        cursor.close()
+            update_sql = "UPDATE jobApply SET job_title = %s WHERE job_id = %s"
+            cursor = db_conn.cursor()
+            cursor.execute(update_sql, (updated_value, job_id,))
+            db_conn.commit()
+            cursor.close()
+        elif column == 'job_desc':
 
+            update_sql = "UPDATE jobApply SET job_desc = %s WHERE job_id = %s"
+            cursor = db_conn.cursor()
+            cursor.execute(update_sql, (updated_value, job_id,))
+            db_conn.commit()
+            cursor.close()
+        elif column == 'job_req':
+
+            update_sql = "UPDATE jobApply SET job_req = %s WHERE job_id = %s"
+            cursor = db_conn.cursor()
+            cursor.execute(update_sql, (updated_value, job_id,))
+            db_conn.commit()
+            cursor.close()
+        elif column == 'sal_range':
+
+            update_sql = "UPDATE jobApply SET sal_range = %s WHERE job_id = %s"
+            cursor = db_conn.cursor()
+            cursor.execute(update_sql, (updated_value, job_id,))
+            db_conn.commit()
+            cursor.close()
+        elif column == 'contact_person_name':
+
+            update_sql = "UPDATE jobApply SET contact_person_name = %s WHERE job_id = %s"
+            cursor = db_conn.cursor()
+            cursor.execute(update_sql, (updated_value, job_id,))
+            db_conn.commit()
+            cursor.close()
+        elif column == 'contact_person_email':
+
+            update_sql = "UPDATE jobApply SET contact_person_email = %s WHERE job_id = %s"
+            cursor = db_conn.cursor()
+            cursor.execute(update_sql, (updated_value, job_id,))
+            db_conn.commit()
+            cursor.close()
+        elif column == 'contact_number':
+
+            update_sql = "UPDATE jobApply SET contact_number = %s WHERE job_id = %s"
+            cursor = db_conn.cursor()
+            cursor.execute(update_sql, (updated_value, job_id,))
+            db_conn.commit()
+            cursor.close()
+        else:
+
+            update_sql = "UPDATE jobApply SET comp_state = %s WHERE job_id = %s"
+            cursor = db_conn.cursor()
+            cursor.execute(update_sql, (updated_value, job_id,))
+            db_conn.commit()
+            cursor.close()
+        
     # Redirect to a confirmation page or back to the job details page
     return redirect(url_for('companyDashboard'))
 
