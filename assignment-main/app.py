@@ -507,6 +507,7 @@ def jobDetail(user_login_name, job_name):
     job_data = cursor.fetchone()
     cursor.close()
     
+    print(job_data)
     # Build the object key and URL
     comp_image_file_name_in_s3 = f"company-{urllib.parse.quote_plus(user_login_name)}_image_file"
     s3_url = f"https://{custombucket}.s3.amazonaws.com/{comp_image_file_name_in_s3}"
