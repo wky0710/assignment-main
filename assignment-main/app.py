@@ -550,12 +550,12 @@ def jobDetail(user_login_name, job_name):
 
     for row in job_data:
         # Assuming job_desc is in the third column (index 2)
-        job_desc = row[2]
+        job_desc = row[3]
         description_points = job_desc.split('-')
 
         # Update the row with the split description points
         row_with_description = list(row)
-        row_with_description[2] = description_points  # Assuming job_desc is in the third column (index 2)
+        row_with_description[3] = description_points  # Assuming job_desc is in the third column (index 2)
         
         # Append the updated row to the new list
         job_data_with_description.append(tuple(row_with_description))
