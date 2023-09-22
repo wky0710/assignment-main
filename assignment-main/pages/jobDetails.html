@@ -137,10 +137,10 @@
                                 <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="edit-img" alt="edit icon" id="job_req">
                                 <p>Job requirement: </p><br>
                                 {% for point in job[4] %}
-                                        {% if point.strip() %}  
-                                            <li>{{ point }}</li>
-                                        {% endif %}
-                                    {% endfor %}
+                                    {% if point.strip() %}  
+                                        <li>{{ point }}</li>
+                                    {% endif %}
+                                {% endfor %}
 
                                 <!-- Edit form initially hidden -->
                                 <form id="editForm3" method="post" action="{{ url_for('edit_job', job_id=job[0]) }}" style="display: none;">
