@@ -539,7 +539,7 @@ def jobDetail(user_login_name, job_name):
 
     # Fetch job details from the database using job_id
     cursor = db_conn.cursor()
-    select_sql = "SELECT * FROM jobApply WHERE comp_name = %s AND job_title = %s"
+    select_sql = "SELECT * FROM jobApply J JOIN company C ON C.compID = J.compID WHERE C.compName = %s AND J.job_title = %s"
     cursor.execute(select_sql, (user_login_name, decoded_job_name,))
     job_data = cursor.fetchall()
     cursor.close()
