@@ -545,6 +545,13 @@ def jobDetail(user_login_name, job_name):
     cursor.close()
     session['job_data'] = job_data
 
+    # Assuming job_data is a list of rows fetched from the database
+    for row in job_data:
+        job_desc = row[4]  # Assuming job_desc is in the fifth column (index 4)
+        description_points = job_desc.split('-')
+        row[4] = description_points
+
+    #here code for print the image 
     # Build the object key and URL
     comp_image_file_name_in_s3 = f"company-{urllib.parse.quote_plus(user_login_name)}_image_file"
    
