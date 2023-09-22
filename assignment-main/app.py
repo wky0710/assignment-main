@@ -546,10 +546,19 @@ def jobDetail(user_login_name, job_name):
     session['job_data'] = job_data
 
     # Assuming job_data is a list of rows fetched from the database
+    job_data_with_description = []
+
     for row in job_data:
-        job_desc = row[4]  # Assuming job_desc is in the fifth column (index 4)
+        # Assuming job_desc is in the third column (index 2)
+        job_desc = row[2]
         description_points = job_desc.split('-')
-        row[4] = description_points
+
+        # Update the row with the split description points
+        row_with_description = list(row)
+        row_with_description[2] = description_points  # Assuming job_desc is in the third column (index 2)
+        
+        # Append the updated row to the new list
+        job_data_with_description.append(tuple(row_with_description))
 
     #here code for print the image 
     # Build the object key and URL
@@ -562,7 +571,7 @@ def jobDetail(user_login_name, job_name):
     list_of_files = list_files(bucket, comp_image_file_name_in_s3)
 
     # Render the job details template and pass the job_data, job_name, and user_login_name
-    return render_template('jobDetails.html', job_data=job_data, list_of_files=list_of_files)
+    return render_template('jobDetails.html', job_data=job_data_with_description, list_of_files=list_of_files)
 
 
 @app.route('/edit/<string:job_id>', methods=['GET', 'POST'])
