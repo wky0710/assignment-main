@@ -553,9 +553,14 @@ def jobDetail(user_login_name, job_name):
         job_desc = row[3]
         description_points = job_desc.split('-')
 
-        # Update the row with the split description points
+        # Assuming job_req is in a different column (index X)
+        job_req = row[4]  # Replace X with the appropriate index of job_req
+        req_points = job_req.split('-')
+
+        # Update the row with the split description and requirement points
         row_with_description = list(row)
         row_with_description[3] = description_points  # Assuming job_desc is in the third column (index 2)
+        row_with_description[4] = req_points  # Replace X with the appropriate index of job_req
         
         # Append the updated row to the new list
         job_data_with_description.append(tuple(row_with_description))

@@ -113,9 +113,11 @@
                             <div class="detail-content">
                                 <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="edit-img" alt="edit icon" id="job_desc">
                                 <p>Job description: </p><br>
-                                <ul style="list-style-type: disc; margin-left: 20px;">
+                                <ul style="list-style-type: disc; ">
                                     {% for point in job[3] %}
-                                        <li>{{ point }}</li>
+                                        {% if point.strip() %}  
+                                            <li>{{ point }}</li>
+                                        {% endif %}
                                     {% endfor %}
                                 </ul>
 
@@ -134,7 +136,11 @@
                             <div class="detail-content">
                                 <img src="{{ url_for('static', filename='img/icon/edit.png') }}" class="edit-img" alt="edit icon" id="job_req">
                                 <p>Job requirement: </p><br>
-                                <p>{{ job[4] }}</p>
+                                {% for point in job[4] %}
+                                        {% if point.strip() %}  
+                                            <li>{{ point }}</li>
+                                        {% endif %}
+                                    {% endfor %}
 
                                 <!-- Edit form initially hidden -->
                                 <form id="editForm3" method="post" action="{{ url_for('edit_job', job_id=job[0]) }}" style="display: none;">
